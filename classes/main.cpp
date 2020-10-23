@@ -1,3 +1,5 @@
+// 테스트용 main 함수
+
 #include <iostream>
 #include "Author.h"
 #include "OperationTag.h"
@@ -20,8 +22,7 @@ int main_2() {
 	return 0;
 }
 
-int main() {
-
+int main_1() {
 	TagBundle bundle;
 	
 	bundle.tags.push_back(new Author);
