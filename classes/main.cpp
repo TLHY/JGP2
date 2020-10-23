@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "Author.h"
-#include "Tags.h"
+#include "tag_parents.h"
 #include "TagBundle.h"
 #include "exceptions.h"
 

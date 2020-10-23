@@ -1,5 +1,5 @@
 #pragma once
-#include "Tags.h"
+#include "tag_parents.h"
 
 // !!! 이 클래스는 사용 예시를 위해 만든 테스트용 클래스로 구현물에 사용할 수 없으니 참고만 해주세요 !!!
 class Author : public BookTag

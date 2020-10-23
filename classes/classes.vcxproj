@@ -140,7 +140,7 @@
   <ItemGroup>
     <ClInclude Include="Author.h" />
     <ClInclude Include="exceptions.h" />
-    <ClInclude Include="Tags.h" />
+    <ClInclude Include="tag_parents.h" />
     <ClInclude Include="TagBundle.h" />
   </ItemGroup>
   <ItemGroup>

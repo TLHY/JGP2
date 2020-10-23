@@ -1,6 +1,6 @@
 #pragma once
 #include <exception>
-#include "Tags.h"
+#include "tag_parents.h"
 
 /* 파일 내의 식별 번호 충돌
 	파일에서 식별 번호 충돌이 발견되면 이 예외를 발생시킵니다.

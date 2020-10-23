@@ -24,7 +24,7 @@
     <ClInclude Include="exceptions.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Tags.h">
+    <ClInclude Include="tag_parents.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
