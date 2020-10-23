@@ -30,7 +30,7 @@ public:
 		인자로 받은 문자열에서 다른 태그가 나오기 직전까지를 인자로 인식하여 _strarg에 저장합니다.
 		인식한 부분을 제외한 나머지 문자열을 반환합니다.
 	*/
-	std::string ParseArgument(std::string str);	// TODO 이건 비가상 함수로 구현하는 게 괜찮겠다.
+	std::string ParseArgument(std::string str);
 
 	/* 객체 복사
 		객체를 복제하는 기능을 구현해야 합니다.
