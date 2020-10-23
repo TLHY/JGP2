@@ -25,7 +25,7 @@ public:
 	void Validate() const;
 
 	/* 출력 함수
-		_tags에 포함된 tag들에 대해 Tag.Print()를 호출합니다.
+		_tags에 포함된 Tag들에 대해 Tag.Print()를 호출합니다.
 	*/
 	void Print() const;
 

@@ -8,7 +8,7 @@ public:
 	Tag* copy() const;	// 복사 함수
 	void Validate() const;	// 규칙 검사 함수
 	void Print() const;	// 출력 함수
-	bool Match(const BookTag* tag) const;
+	bool Match(const BookTag* search) const;	// 일치 함수
 };
 
 Tag* Author::copy() const
@@ -24,7 +24,7 @@ void Author::Validate() const
 	*/ 
 }
 
-bool Author::Match(const BookTag* tag) const
+bool Author::Match(const BookTag* search) const
 {
 	return false;
 }
