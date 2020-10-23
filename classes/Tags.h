@@ -3,6 +3,9 @@
 #include <string>
 #include <sstream>
 
+/* 태그 클래스
+	태그의 상위 추상 클래스입니다.
+*/
 class Tag
 {
 protected:
@@ -49,6 +52,32 @@ public:
 		":tag-name: argument"와 같이 태그 내용을 출력합니다.
 	*/
 	virtual void Print() const = 0;
+};
+
+/* 도서 태그 클래스
+	도서 태그의 상위 추상 클래스입니다.
+	태그 클래스를 상속합니다.
+*/
+class BookTag : public Tag
+{
+public:
+	/* 태그 일치 함수
+		인자로 받은 태그와 자신이 일치하는지, 데이터 요소의 검색 조건에 따라 판단하여 반환합니다.
+	*/
+	virtual bool Match(const BookTag* search) const = 0;
+};
+
+/* 명령 태그 클래스
+	명령 태그의 상위 추상 클래스입니다.
+	태그 클래스를 상속합니다.
+*/
+class OperationTag : public Tag
+{
+public:
+	/* 기능 함수
+		태그에 맞게 수행해야 하는 동작을 정의해야 합니다.
+	*/
+	virtual void Operate() = 0;
 };
 
 // ostream에 대한 left-shift 연산; 출력 함수 사용

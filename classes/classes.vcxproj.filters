@@ -15,15 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tag.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="OperationTag.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="BookTag.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="TagBundle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -31,6 +22,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="exceptions.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

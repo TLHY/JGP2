@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "Author.h"
-#include "OperationTag.h"
+#include "Tags.h"
 #include "TagBundle.h"
 #include "exceptions.h"
 
@@ -35,7 +35,7 @@ int main_2() {	// 인자를 파싱하는 예시
 	return 0;
 }
 
-int main_1() {	// 태그 번들에서 특정 타입의 태그만 골라내는 예시
+int main() {	// 태그 번들에서 특정 타입의 태그만 골라내는 예시
 	TagBundle bundle;
 	
 	bundle.tags.push_back(new Author);
