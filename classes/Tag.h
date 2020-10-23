@@ -21,7 +21,7 @@ public:
 	int intarg() const { return _intarg; };
 
 	/* 태그 검사
-		어떤 문자열이 태그에 해당하는지를 반환합니다.
+		인자로 전달된 문자열이 태그인지를 문법 규칙을 기준으로 판단하여 반환합니다.
 	*/
 	static bool is_tag(const std::string& str);
 

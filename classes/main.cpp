@@ -4,8 +4,21 @@
 #include "Author.h"
 #include "OperationTag.h"
 #include "TagBundle.h"
+#include "exceptions.h"
 
-int main_2() {
+int main_3() {	// 예외를 처리하는 예시
+	try
+	{
+		throw InvalidTag(":aaaa:");
+	}
+	catch (const InvalidTag& e)
+	{
+		std::cout << e.what() << "\b: " << e.name() << "\n";
+	}
+	return 0;
+}
+
+int main_2() {	// 인자를 파싱하는 예시
 	std::string s = ":author: author name :author: author 2 :title: book 2";
 	std::stringstream ss(s);
 	std::string t;
@@ -22,7 +35,7 @@ int main_2() {
 	return 0;
 }
 
-int main_1() {
+int main_1() {	// 태그 번들에서 특정 타입의 태그만 골라내는 예시
 	TagBundle bundle;
 	
 	bundle.tags.push_back(new Author);

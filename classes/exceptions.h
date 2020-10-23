@@ -10,8 +10,8 @@ private:
 	const int _line;
 public:
 	ReduplicatedID(const int line) : std::exception(), _line(line) {};
-	const char* what() { return "[!] 식별 번호 충돌이 발견되었습니다. 데이터 파일을 직접 수정해주세요."; };
-	const int line() { return _line; };
+	const char* what() const { return "[!] 식별 번호 충돌이 발견되었습니다. 데이터 파일을 직접 수정해주세요."; };
+	const int line() const { return _line; };
 };
 
 /* 파일 내의 유효하지 않은 행
@@ -22,8 +22,21 @@ private:
 	const int _line;
 public:
 	InvalidLine(const int line) : std::exception(), _line(line) {};
-	const char* what() { return "[오류] 도서 정보로 해석할 수 없는 행이 발견되었습니다. 데이터 파일을 직접 수정해주세요."; }
-	const int line() { return _line; };
+	const char* what() const { return "[오류] 도서 정보로 해석할 수 없는 행이 발견되었습니다. 데이터 파일을 직접 수정해주세요."; }
+	const int line() const { return _line; };
+};
+
+/* 사용할 수 없는 태그
+	정의되지 않은 태그를 입력하면 이 예외를 발생시킵니다.
+	예를 들어, :abcdef:와 같은 태그는 문법적으로는 올바르지만 정의가 존재하지 않으므로 사용할 수 없는 태그입니다.
+*/
+class InvalidTag : public std::exception {
+private:
+	const char* _name;
+public:
+	InvalidTag(const char* name) : std::exception(), _name(name) {};
+	const char* what() const { return "[!] 사용할 수 없는 태그입니다."; };
+	const char* name() const { return _name; };
 };
 
 /* 여러 명령 태그 사용
@@ -31,7 +44,7 @@ public:
 */
 class MultipleOperationTags : public std::exception {
 public:
-	const char* what() { return "[!] 동시에 여러 명령 태그를 사용할 수 없습니다."; };
+	const char* what() const { return "[!] 동시에 여러 명령 태그를 사용할 수 없습니다."; };
 };
 
 /* 하나 이상의 도서 태그 필요
@@ -39,7 +52,7 @@ public:
 */
 class NeedOneOrMoreBookTag : public std::exception {
 public:
-	const char* what() { return "[!] 식별 번호 태그를 제외한 하나 이상의 도서 정보 태그가 필요합니다."; };
+	const char* what() const { return "[!] 식별 번호 태그를 제외한 하나 이상의 도서 정보 태그가 필요합니다."; };
 };
 
 /* 모든 도서 태그 필요
@@ -47,7 +60,7 @@ public:
 */
 class NeedEveryBookTag : public std::exception {
 public:
-	const char* what() { return "[!] 식별 번호 태그를 제외한 모든 도서 정보 태그가 필요합니다."; };
+	const char* what() const { return "[!] 식별 번호 태그를 제외한 모든 도서 정보 태그가 필요합니다."; };
 };
 
 // TODO: add, edit 태그 사용시 중복된 도서 태그 사용도 예외로 처리해야 함
@@ -62,7 +75,7 @@ private:
 	const Tag* _tag;
 public:
 	TagException(const Tag* tag) : std::exception(), _tag(tag) {};
-	const Tag* tag() { return _tag; }
+	const Tag* tag() const { return _tag; }
 };
 
 /* 올바르지 않은 인자
@@ -72,7 +85,7 @@ class InvlidArgument : public TagException
 {
 public:
 	InvlidArgument(const Tag* tag) : TagException(tag) {};
-	const char* what() { return "[!] 태그의 인자가 올바르지 않습니다."; }
+	const char* what() const { return "[!] 태그의 인자가 올바르지 않습니다."; }
 };
 
 /* 조회할 수 없는 식별 번호
@@ -81,7 +94,7 @@ public:
 class IDNotFound : public TagException {
 public:
 	IDNotFound(const Tag* tag) : TagException(tag) {};
-	const char* what() { return "[!] 조회할 수 없는 식별 번호입니다."; }
+	const char* what() const { return "[!] 조회할 수 없는 식별 번호입니다."; }
 };
 
 /* 조회할 수 없는 페이지
@@ -90,5 +103,5 @@ public:
 class PageNotFound : public TagException {
 public:
 	PageNotFound(const Tag* tag) : TagException(tag) {};
-	const char* what() { return "[!] 조회할 수 없는 페이지입니다."; };
+	const char* what() const { return "[!] 조회할 수 없는 페이지입니다."; };
 };
