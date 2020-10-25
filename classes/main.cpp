@@ -6,7 +6,7 @@
 #include "TagBundle.h"
 #include "exceptions.h"
 
-int main_3() {	// 예외를 처리하는 예시
+int main() {	// 예외를 처리하는 예시
 	try
 	{
 		throw InvalidTag(":aaaa:");
@@ -15,6 +15,18 @@ int main_3() {	// 예외를 처리하는 예시
 	{
 		std::cout << e.what() << "\b: " << e.name() << "\n";
 	}
+	try {
+		Author a;
+		throw InvlidArgument(&a);
+	}
+	catch (const InvlidArgument & e) {
+		std::cout << e.what() << "\b: " << *(e.tag()) << "\n";
+	}
+
+	/* output:
+	[!] 사용할 수 없는 태그입니다: :aaaa:
+	[!] 태그의 인자가 올바르지 않습니다: :author:
+	*/
 	return 0;
 }
 
@@ -29,13 +41,19 @@ int main_2() {	// 인자를 파싱하는 예시
 		s = a.ParseArgument(s);
 		ss.str(s);
 		ss.clear();
-		std::cout << a << ", left: " << s << "\n";
+		std::cout << "<" << a << "> left: \"" << s << "\"\n";
 	}
+
+	/* output:
+	<:author: author name> left: ":author: author 2 :title: book 2"
+	<:author: author 2> left: ":title: book 2"
+	<:author: book 2> left: ""
+	*/
 
 	return 0;
 }
 
-int main() {	// 태그 번들에서 특정 타입의 태그만 골라내는 예시
+int main_1() {	// 태그 번들에서 특정 타입의 태그만 골라내는 예시
 	TagBundle bundle;
 	
 	bundle.tags.push_back(new Author);
@@ -53,5 +71,24 @@ int main() {	// 태그 번들에서 특정 타입의 태그만 골라내는 예시
 	std::cout << "=== OperationTag ===\n" << operations << "\n";
 
 	std::cout << "=== entire tags ===\n" << bundle << "\n";
+
+	/* output:
+	=== entire tags ===
+	:author:
+	:author:
+
+	=== Author ===
+	:author:
+	:author:
+
+	=== BookTag ===
+
+	=== OperationTag ===
+
+	=== entire tags ===
+	:author:
+	:author:
+	*/
+
 	return 0;
 }
