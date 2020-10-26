@@ -6,7 +6,63 @@
 #include "TagBundle.h"
 #include "exceptions.h"
 
-int main() {	// 예외를 처리하는 예시
+int main_4() {	// Author 사용 예시
+	std::vector<std::string> args;
+	args.push_back("nice name");
+	args.push_back("◇◇◇");
+	args.push_back("사용할 수 없는 문자열");
+	args.push_back("author");
+	args.push_back("");
+
+	TagBundle bundle;
+
+	for (int i = 0; i < args.size(); i++) {
+		Author* a = new Author;
+		a->ParseArgument(args[i]);
+		bundle.tags.push_back(a);
+		try
+		{
+			a->Validate();	// Tag::Validate 함수를 모든 태그에 대해 한 번씩 호출하는 부분
+		}
+		catch (const InvalidArgument& e)	// 예외가 발생하면
+		{
+			std::cout << e.what() << "\b: " << *(e.tag()) << "\n";	// 예외 처리
+			continue;
+		}
+		std::cout << *a << "\n";	// 예외가 없으면 그냥 출력
+	}
+
+	std::cout << "\n= bundle =\n" << bundle << "\n";
+	try
+	{
+		bundle.Validate();	// TagBundle::Validate()를 호출하는 부분
+	}
+	catch (const InvalidArgument& e)
+	{
+		std::cout << e.what() << "\b: " << *(e.tag()) << "\n";
+	}
+	
+	/* output:
+	:author: nice name
+	[!] 태그의 인자가 올바르지 않습니다: :author: ◇◇◇
+	[!] 태그의 인자가 올바르지 않습니다: :author: 사용할 수 없는 문자열
+	:author: author
+	[!] 태그의 인자가 올바르지 않습니다: :author:
+
+	= bundle =
+	:author: nice name
+	:author: ◇◇◇
+	:author: 사용할 수 없는 문자열
+	:author: author
+	:author:
+
+	[!] 태그의 인자가 올바르지 않습니다: :author: ◇◇◇
+	*/
+
+	return 0;
+}
+
+int main_3() {	// 예외를 처리하는 예시
 	try
 	{
 		throw InvalidTag(":aaaa:");
@@ -17,9 +73,9 @@ int main() {	// 예외를 처리하는 예시
 	}
 	try {
 		Author a;
-		throw InvlidArgument(&a);
+		throw InvalidArgument(&a);
 	}
-	catch (const InvlidArgument & e) {
+	catch (const InvalidArgument & e) {
 		std::cout << e.what() << "\b: " << *(e.tag()) << "\n";
 	}
 
@@ -27,6 +83,7 @@ int main() {	// 예외를 처리하는 예시
 	[!] 사용할 수 없는 태그입니다: :aaaa:
 	[!] 태그의 인자가 올바르지 않습니다: :author:
 	*/
+
 	return 0;
 }
 
