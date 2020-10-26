@@ -6,6 +6,33 @@
 #include "TagBundle.h"
 #include "exceptions.h"
 
+int main() {	// Author 사용 예시
+	Author* a = new Author;
+	a->ParseArgument("John Doe");
+
+	Author* search1 = new Author;
+	search1->ParseArgument("doe");
+	
+	Author* search2 = new Author;
+	search2->ParseArgument("JOhn trio");
+
+	std::cout << *a << ", " << *search1 << ", " << *search2 << "\n\n";
+
+	std::cout << a->Match(search1) << "\n"	// John Doe에서 doe를 찾음: 성공
+		<< a->Match(search2) << "\n"		// John Doe에서 JOhn trio를 찾음: 실패
+		<< a->Match(a) << "\n";				// John Doe에서 John Doe를 찾음: 성공
+
+	/* output:
+	:author: John Doe, :author: doe, :author: JOhn trio
+
+	1
+	0
+	1
+	*/
+
+	return 0;
+}
+
 int main_4() {	// Author 사용 예시
 	std::vector<std::string> args;
 	args.push_back("nice name");

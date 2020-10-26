@@ -1,6 +1,7 @@
 #pragma once
 #include "tag_parents.h"
 #include "exceptions.h"
+#include <algorithm>
 
 class Author : public BookTag
 {
@@ -61,7 +62,12 @@ void Author::Validate() const
 
 bool Author::Match(const BookTag* search) const
 {
-	return _strarg.find(search->strarg()) != std::string::npos;
+	std::string my_arg = _strarg;
+	std::string search_arg = search->strarg();
+	// 문자열을 모두 소문자로 변경한 뒤 검사
+	std::transform(my_arg.begin(), my_arg.end(), my_arg.begin(), [](unsigned char c) { return std::tolower(c); });
+	std::transform(search_arg.begin(), search_arg.end(), search_arg.begin(), [](unsigned char c) { return std::tolower(c); });
+	return my_arg.find(search_arg) != std::string::npos;
 }
 
 void Author::Print() const
