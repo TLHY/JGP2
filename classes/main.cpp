@@ -49,7 +49,7 @@ int main_4() {	// Author 사용 예시
 		bundle.tags.push_back(a);
 		try
 		{
-			a->Validate();	// Tag::Validate 함수를 모든 태그에 대해 한 번씩 호출하는 부분
+			a->Validate();	// Tag::Validate()를 모든 태그에 대해 한 번씩 호출하는 부분
 		}
 		catch (const InvalidArgument& e)	// 예외가 발생하면
 		{
