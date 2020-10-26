@@ -67,6 +67,8 @@ public:
 	virtual bool Match(const BookTag* search) const = 0;
 };
 
+class MainPrompt;	// 주 프롬프트 클래스가 아직 없으므로 일단 이름만 만들어줍니다.
+
 /* 명령 태그 클래스
 	명령 태그의 상위 추상 클래스입니다.
 	태그 클래스를 상속합니다.
@@ -77,7 +79,7 @@ public:
 	/* 기능 함수
 		태그에 맞게 수행해야 하는 동작을 정의해야 합니다.
 	*/
-	virtual void Operate() = 0;
+	virtual void Operate(MainPrompt& main_prompt) = 0;
 };
 
 // ostream에 대한 left-shift 연산; 출력 함수 사용
