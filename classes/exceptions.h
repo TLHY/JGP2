@@ -81,10 +81,10 @@ public:
 /* 올바르지 않은 인자
 	태그가 규칙 검사를 할 때 인자가 문법 형식을 위반하면 이 예외를 발생시킵니다.
 */
-class InvlidArgument : public TagException
+class InvalidArgument : public TagException
 {
 public:
-	InvlidArgument(const Tag* tag) : TagException(tag) {};
+	InvalidArgument(const Tag* tag) : TagException(tag) {};
 	const char* what() const { return "[!] 태그의 인자가 올바르지 않습니다."; }
 };
 
