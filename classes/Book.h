@@ -37,7 +37,7 @@ inline void Book::Print() const
 		<< _title.strarg() << "\t| "
 		<< _author.strarg() << "\t| "
 		<< _publisher.strarg() << "\t| "
-		<< _date.strarg() << "\t| ";
+		<< _date.strarg();
 }
 
 int Book::Match(const TagBundle& bundle) const
