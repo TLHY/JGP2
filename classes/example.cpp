@@ -6,7 +6,7 @@
 #include "TagBundle.h"
 #include "exceptions.h"
 
-int main() {
+int main_5() {
 	std::string _raw_input;
 	std::getline(std::cin, _raw_input);
 

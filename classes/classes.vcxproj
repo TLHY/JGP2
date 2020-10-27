@@ -157,7 +157,6 @@
     <ClInclude Include="Date.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Book.cpp" />
     <ClCompile Include="example.cpp" />
     <ClCompile Include="MainPrompt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
