@@ -17,17 +17,27 @@ public:
 	void set_Date(std::string date) { _date << date; };
 
 	void Validate();
+	void Print() const;
 
 	int Match(const TagBundle& bundle) const;
 };
 
-void Book::Validate()
+inline void Book::Validate()
 {
 	_id.Validate();
 	_title.Validate();
 	_author.Validate();
 	_publisher.Validate();
 	_date.Validate();
+}
+
+inline void Book::Print() const
+{
+	std::cout << _id.strarg() << "\t"
+		<< _title.strarg() << "\t| "
+		<< _author.strarg() << "\t| "
+		<< _publisher.strarg() << "\t| "
+		<< _date.strarg() << "\t| ";
 }
 
 int Book::Match(const TagBundle& bundle) const
