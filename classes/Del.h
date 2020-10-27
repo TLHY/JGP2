@@ -34,8 +34,8 @@ void Del::Validate(){
 	}
 }
 void Del::Print() const {
-	cout <<":ID: "<<_intarg << "deleted" << endl;
+	cout <<":Del: "<<_intarg << _strarg << endl;
 }
 void Del::Operate(MainPrompt& main){
-	main.entire_books().Del(main.input_bundle());
+	main.entire_books().DelOP(main.input_bundle());
 }

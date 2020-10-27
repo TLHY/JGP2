@@ -17,7 +17,7 @@ Tag* Edit::copy() const {
 	return new Edit(*this);
 }
 void Edit::Print() const {
-	cout << _strarg << "edited" << endl;
+	cout << ":edit: "<<_strarg<< endl;
 }
 void Edit::Validate(){
 	//단순 문법 규칙확인입니다.
@@ -41,5 +41,5 @@ void Edit::Validate(){
 	}
 }
 void Edit::Operate(MainPrompt& main){
-	main.entire_books().edit(main.input_bundle());
+	main.entire_books().EditOP(main.input_bundle());
 }

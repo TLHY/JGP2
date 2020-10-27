@@ -25,5 +25,5 @@ void Add::Print() const{
 	cout << _strarg << "added" << endl;
 }
 void Add::Operate(MainPrompt& main){
-	main.entire_books().addOP(main.input_bundle());
+	main.entire_books().AddOP(main.input_bundle());
 } 

@@ -156,7 +156,10 @@ void MainPrompt::Prompt()
 			_entire_books.IdSearch(operation_tags.tags.at(0));
 		}
 		else if (operation_type == typeid(Page)) {
-			// 페이지가 존재하는지 확인해야 함
+			// Page 의미 규칙
+		}
+		else if (operation_type == typeid(Clear)) {
+			// Clear 의미 규칙
 		}
 	}
 	TagBundle id_tags = book_tags.GetTagByType<ID>();

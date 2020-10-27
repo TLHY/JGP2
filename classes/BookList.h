@@ -4,8 +4,8 @@
 #include <typeinfo>
 #include <string>
 #include "FileIO.h"
-#include "tags.h"
-#include "tags2.h"
+#include "book_tags.h"
+#include "operation_tags.h"
 #include "book.h"
 #include "exceptions.h"
 #include "TagBundle.h"
@@ -26,6 +26,12 @@ public:
 
 	//검색하기
 	vector<Book*> search(TagBundle filters);
+
+	void AddOP(TagBundle* input);
+
+	void EditOP(TagBundle* input);
+
+	void DelOP(TagBundle* input);
 
 	//도서목록찾기
 	vector<Book> IdSearch(int ID);
@@ -128,27 +134,75 @@ vector<Book*> BookList::search(TagBundle filters) {
 	}
 }
 
-void BookList::Book_Edit(vector<Book*> book) {
+void BookList::AddOP(TagBundle* input) {
 	SubPrompt sp;
-	if (tag[0] == ":add:") {
-		SubPrompt("도서 정보를 저장하시겠습니까 ? (Y / N) >");
-		if (sp.is_real()) {
-			Add().Operate();
+	SubPrompt("도서 정보를 저장하시겠습니까 ? (Y / N) >");
+	if (sp.is_real()) {
+		string s;
+		int emptyIndex = input->tags[0]->intarg();
+		for (int i = 0; i < book.size(); i++) {
+			if (book.at(i)->get_ID() == "EMPTY") {
+				emptyIndex = i;
+				break;
+			}
 		}
-	}
-	if (tag[0] == ":edit:"){
-		SubPrompt("도서 정보를 저장하시겠습니까 ? (Y / N) >");
-		if (sp.is_real()) {
-			edit().Operate();
-		}
-	}
-	if (tag[0] == ":del:") {
-		SubPrompt("도서 정보를 저장하시겠습니까 ? (Y / N) >");
-		if (sp.is_real()) {
-			Del().Operate();
+		for (int i = 0; i < input->tags.size(); i++) {
+			if (typeid(input->tags[i]) == typeid(ID)) {
+				book.at(emptyIndex)->set_ID(to_string(emptyIndex));
+			}
+			else if (typeid(input->tags[i]) == typeid(Title)) {
+				book.at(emptyIndex)->set_Title(input->tags[i]->strarg());
+			}
+			else if (typeid(input->tags[i]) == typeid(Author)) {
+				book.at(emptyIndex)->set_Author(input->tags[i]->strarg());
+			}
+			else if (typeid(input->tags[i]) == typeid(Publisher)) {
+				book.at(emptyIndex)->set_Publisher(input->tags[i]->strarg());
+			}
+			else if (typeid(input->tags[i]) == typeid(Date)) {
+				book.at(emptyIndex)->set_Date(input->tags[i]->strarg());
+			}
 		}
 	}
 }
+void BookList::EditOP(TagBundle* input) {
+	SubPrompt sp;
+	SubPrompt("도서 정보를 저장하시겠습니까 ? (Y / N) >");
+	if (sp.is_real()) {
+		int index = input->tags[0]->intarg() - 1;
+		for (int i = 0; i < input->tags.size(); i++) {
+			if (typeid(input->tags[i]) == typeid(Title)) {
+				book.at(index)->set_Title(input->tags[i]->strarg());
+			}
+			if (typeid(input->tags[i]) == typeid(Author)) {
+				book.at(index)->set_Author(input->tags[i]->strarg());
+			}
+			if (typeid(input->tags[i]) == typeid(Publisher)) {
+				book.at(index)->set_Publisher(input->tags[i]->strarg());
+			}
+			if (typeid(input->tags[i]) == typeid(Date)) {
+				book.at(index)->set_Date(input->tags[i]->strarg());
+			}
+		}
+	}
+}
+void BookList::DelOP(TagBundle* input) {
+	SubPrompt sp;
+	SubPrompt("도서 정보를 삭제하시겠습니까 ? (Y / N) >");
+	if (sp.is_real()) {
+		for (int i = 0; i < input->tags.size(); i++) {
+			if (typeid(input->tags[i]) == typeid(ID)) {
+				int index = input->tags[i]->intarg() - 1;
+				book.at(index)->set_Title("");
+				book.at(index)->set_Author("");
+				book.at(index)->set_Publisher("");
+				book.at(index)->set_Date("");
+				book.at(index)->set_ID("EMPTY");
+			}
+		}
+	}
+}
+
 
 vector<Book> BookList::IdSearch(int ID) {
 	vector<Book> IdBook;

@@ -144,7 +144,9 @@
     <ClInclude Include="BookList.h" />
     <ClInclude Include="book_tags.h" />
     <ClInclude Include="Clear.h" />
+    <ClInclude Include="Exit.h" />
     <ClInclude Include="FileIO.h" />
+    <ClInclude Include="Help.h" />
     <ClInclude Include="operation_tags.h" />
     <ClInclude Include="Del.h" />
     <ClInclude Include="Edit.h" />
