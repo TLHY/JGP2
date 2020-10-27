@@ -12,7 +12,7 @@ public:
 	void Operate();
 	void Operate(int mpage, vector<Book*> book) const;
 	Tag* copy() const;
-	void Validate() const;
+	void Validate();
 	void Validate(int mpage, vector<Book*> book) const;
 	void Print() const;
 };
@@ -22,7 +22,7 @@ Tag* Page::copy() const {
 void Page::Operate() {
 
 }
-void Page::Validate() const {
+void Page::Validate() {
 
 }
 void Page::Print() const {
@@ -43,8 +43,6 @@ void Page::Validate(int mpage, vector<Book*> book) const {
 	}catch (ArgumentNotFound& e) {
 		cout << e.what() << endl;
 	}
-
-
 }
 void Page::Operate(int mpage, vector<Book*> book) const {
 	int page = book.size() / 10 + 1;

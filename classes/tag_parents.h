@@ -30,7 +30,7 @@ public:
 
 	/* 인자 추가
 		멤버 변수인 _strarg에 인자로 받은 str을 붙입니다.
-		다음과 같습니다.
+		아래 코드과 유사합니다.
 		_strarg += " " + str;
 	*/
 	Tag& operator<<(std::string str);

@@ -22,7 +22,6 @@ public:
 	std::string get_Publisher() const { return _publisher.strarg(); };
 	std::string get_Date() const { return _date.strarg(); };
 
-
 	void Validate();
 	void Print() const;
 
