@@ -1,25 +1,11 @@
 #include "MainPrompt.h"
 #include <iostream>
 #include <sstream>
-#include "tag_parents.h"
 #include "exceptions.h"
 #include <typeinfo>
 
-// 도서 태그
-class Title : BookTag {};
-class Author : BookTag {};
-class Publisher : BookTag {};
-class Date : BookTag {};
-class ID : BookTag {};
-
-// 명령 태그
-class Add : OperationTag {};
-class Edit : OperationTag {};
-class Del : OperationTag {};
-class Clear : OperationTag {};
-class Exit : OperationTag {};
-class Page : OperationTag {};
-class Help : OperationTag {};
+#include "book_tags.h"
+#include "operation_tags.h"
 
 Tag* MainPrompt::GetTag(const std::string str) const
 {
@@ -167,7 +153,6 @@ void MainPrompt::Prompt()
 		}
 	}
 	TagBundle id_tags = book_tags.GetTagByType<ID>();
-	ID* t;
 	for (unsigned int i = 0; i < id_tags.tags.size(); i++) {	// :id:가 사용될 때 인자의 id가 존재하지 않는 경우
 		_entire_books.IdSearch(id_tags.tags.at(i));
 	}

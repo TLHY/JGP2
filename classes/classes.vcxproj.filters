@@ -13,22 +13,61 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="헤더 파일\tag">
+      <UniqueIdentifier>{3b46be22-34a4-4f34-a800-f83aa38989ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\tag\book">
+      <UniqueIdentifier>{2d1f6618-1744-4d6f-8ded-0516ffc886ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\tag\operation">
+      <UniqueIdentifier>{363af7a5-a548-4bbd-a549-a9aed3631d0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TagBundle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Author.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="exceptions.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="tag_parents.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="MainPrompt.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Author.h">
+      <Filter>헤더 파일\tag\book</Filter>
+    </ClInclude>
+    <ClInclude Include="book_tags.h">
+      <Filter>헤더 파일\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="operation_tags.h">
+      <Filter>헤더 파일\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="tag_parents.h">
+      <Filter>헤더 파일\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="Edit.h">
+      <Filter>헤더 파일\tag\operation</Filter>
+    </ClInclude>
+    <ClInclude Include="Del.h">
+      <Filter>헤더 파일\tag\operation</Filter>
+    </ClInclude>
+    <ClInclude Include="Date.h">
+      <Filter>헤더 파일\tag\book</Filter>
+    </ClInclude>
+    <ClInclude Include="ID.h">
+      <Filter>헤더 파일\tag\book</Filter>
+    </ClInclude>
+    <ClInclude Include="Publisher.h">
+      <Filter>헤더 파일\tag\book</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>헤더 파일\tag\book</Filter>
+    </ClInclude>
+    <ClInclude Include="Add.h">
+      <Filter>헤더 파일\tag\operation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -36,6 +75,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="example.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Book.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

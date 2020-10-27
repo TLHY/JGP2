@@ -18,6 +18,12 @@ private:
 	Tag* GetTag(const std::string str) const;
 
 public:
+	// 멤버 변수 접근 함수
+	BookList& entire_books() { return _entire_books; };
+	BookList& searched_books() { return _searched_books; };
+	std::string& raw_input() { return _raw_input; };
+	TagBundle& input_bundle() { return _input_bundle; };
+
 	/* 주 프롬프트 실행 함수
 		사용자로부터 문자열을 입력받아 검사, 해석, 처리를 하는 함수입니다.
 	*/

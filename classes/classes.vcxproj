@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -138,18 +138,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Add.h" />
     <ClInclude Include="Author.h" />
+    <ClInclude Include="Book.h" />
+    <ClInclude Include="book_tags.h" />
+    <ClInclude Include="operation_tags.h" />
+    <ClInclude Include="Del.h" />
+    <ClInclude Include="Edit.h" />
     <ClInclude Include="exceptions.h" />
+    <ClInclude Include="ID.h" />
     <ClInclude Include="MainPrompt.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Publisher.h" />
     <ClInclude Include="tag_parents.h" />
     <ClInclude Include="TagBundle.h" />
+    <ClInclude Include="Title.h" />
+    <ClInclude Include="Date.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Book.cpp" />
     <ClCompile Include="example.cpp" />
     <ClCompile Include="MainPrompt.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

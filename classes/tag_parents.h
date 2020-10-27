@@ -15,9 +15,9 @@ protected:
 public:
 	// 생성자
 	Tag(const std::string& strarg, const int& intarg) : _strarg(strarg), _intarg(intarg) {};
-	Tag(const std::string& strarg) : Tag(strarg, 0) {};
+	Tag(const std::string& strarg) : Tag(strarg, -1) {};
 	Tag(const int& intarg) : Tag("", intarg) {};
-	Tag() : Tag("", 0) {};
+	Tag() : Tag("", -1) {};
 
 	// 멤버 변수에 대한 접근 함수
 	std::string strarg() const { return _strarg; };
@@ -57,7 +57,7 @@ public:
 		발생한 예외는 주 프롬프트에서 처리합니다.
 		+ _intarg를 사용하는 태그의 경우, 이 함수 안에서 _strarg의 데이터로부터 _intarg를 초기화하는 것을 권장합니다.
 	*/
-	virtual void Validate() const = 0;
+	virtual void Validate() = 0;
 
 	/* 출력 함수
 		":tag-name: argument"와 같이 태그 내용을 출력합니다.

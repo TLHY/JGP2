@@ -3,36 +3,28 @@
 #include "tag_parents.h"
 #include <vector>
 #include "exceptions.h"
-#include <algorithm>
 using namespace std;
-class Author :public BookTag {
+class Publisher :public BookTag {
 public:
 	Tag* copy() const;
-	string get_Author();
+	string get_Publisher();
 	void Validate();
 	void Print() const;
 	bool Match(const BookTag* search) const;
 };
-Tag* Author::copy() const {
-	return new Author(*this);
+Tag* Publisher::copy() const {
+	return new Publisher(*this);
 }
-string Author::get_Author() {
+string Publisher::get_Publisher() {
 	return this->strarg();
 }
-void Author::Validate()
-{
-	/* 검사해야 하는 규칙
-	8.1.2. 도서 태그 :author:
-		문법 형식: 이 명령은 인자가 반드시 있어야합니다. 인자는 6.2절의 저자명에 해당합니다.
-		의미 규칙: 없음.
-	6.2. 저자명
-		문법 형식: 문법적으로 올바른 저자명은 아래 조건을 모두 만족 시키는 문자열입니다.
-			6.2.1. 실상 문자와 공백 문자로 이루어진 길이가 1 이상인 문자열
-			6.2.2. 실상 문자가 한 개 이상 포함된 문자열
-			6.2.3. 첫 문자와 마지막 문자가 실상 문자인 문자열
-			6.2.4. 공백 문자가 포함되는 경우 공백의 바로 앞과 뒤에 오는 문자가 실상 문자인 문자열
-	*/
-	// 8.1.2. 검사
+void Publisher::Validate(){
+	/*문법 형식: 문법적으로 올바른 출판사명은는 아래 조건을 모두 만족 시키는 문자열입니다.
+		실상 문자와 공백 문자로 이루어진 길이가 1 이상인 문자열
+		실상 문자가 한 개 이상 포함된 문자열
+		첫 문자와 마지막 문자가 실상 문자인 문자열
+		공백 문자가 포함되는 경우 공백의 바로 앞과 뒤에 오는 문자가 실상 문자인 문자열*/
+
 	if (_strarg.empty()) {
 		throw InvalidArgument(this);
 	}
@@ -44,28 +36,23 @@ void Author::Validate()
 	for (int i = 0; i < _strarg.length(); i++) {
 		char c = _strarg.at(i);
 		blanks += blanks == ' ';
-		// 6.2.1. 검사
 		if (c < ' ' || c > '~') {	// 아스키 코드에서 SP부터 ~까지가 실상 문자에 해당합니다.
 			throw InvalidArgument(this);
 		}
-		// 6.2.4. 검사
 		if (i > 0 && i < _strarg.length() - 1) {
 			if (c == ' ' && (_strarg.at(i - 1) == ' ' || _strarg.at(i + 1) == ' ')) {
 				throw InvalidArgument(this);
 			}
 		}
 	}
-	// 6.2.2. 검사
 	if (blanks == _strarg.length()) {
 		throw InvalidArgument(this);
 	}
 }
-void Author::Print() const
-{
-	std::cout << ":author: " << _strarg;
+void Publisher::Print() const {
+	std::cout << ":publisher: " << _strarg;
 }
-bool Author::Match(const BookTag* search) const
-{
+bool Publisher::Match(const BookTag* search) const {
 	std::string my_arg = _strarg;
 	std::string search_arg = search->strarg();
 	// 문자열을 모두 소문자로 변경한 뒤 검사
@@ -73,4 +60,5 @@ bool Author::Match(const BookTag* search) const
 	std::transform(search_arg.begin(), search_arg.end(), search_arg.begin(), [](unsigned char c) { return std::tolower(c); });
 	return my_arg.find(search_arg) != std::string::npos;
 }
+
 
