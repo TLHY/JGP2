@@ -50,7 +50,7 @@ void Author::Validate() const
 		// 6.2.4. °Ë»ç
 		if (i > 0 && i < _strarg.length() - 1) {
 			if (c == ' ' && (_strarg.at(i - 1) == ' ' || _strarg.at(i + 1) == ' ')) {
-				
+				throw InvalidArgument(this);
 			}
 		}
 	}

@@ -6,32 +6,38 @@
 #include "TagBundle.h"
 #include "exceptions.h"
 
-int main() {	// Author 사용 예시
-	Author* a = new Author;
-	a->ParseArgument("John Doe");
+int main() {
+	std::string _raw_input;
+	std::getline(std::cin, _raw_input);
 
-	Author* search1 = new Author;
-	search1->ParseArgument("doe");
+	std::stringstream ss(_raw_input);
+	std::string token;
+	bool tag_found = false;
+	while (ss >> token) {
+		if (Tag::is_tag(token)) {
+			tag_found = true;
+		}
+	}
+	if (!tag_found) {
+		ss.str(_raw_input);
+		ss.clear();
+		_raw_input = ":title: " + _raw_input + " :";
+		std::cout << "| " << _raw_input << "\n";
+		while (ss >> token) {
+			token = ":title: " + token + " :";
+			std::cout << "| " << token << "\n";
+			if (_raw_input.find(token) == std::string::npos) {
+				_raw_input = _raw_input.substr(0, _raw_input.length() - 1) + token;
+			}
+		}
+		_raw_input = _raw_input.substr(0, _raw_input.length() - 2);
+	}
 	
-	Author* search2 = new Author;
-	search2->ParseArgument("JOhn trio");
-
-	std::cout << *a << ", " << *search1 << ", " << *search2 << "\n\n";
-
-	std::cout << a->Match(search1) << "\n"	// John Doe에서 doe를 찾음: 성공
-		<< a->Match(search2) << "\n"		// John Doe에서 JOhn trio를 찾음: 실패
-		<< a->Match(a) << "\n";				// John Doe에서 John Doe를 찾음: 성공
-
-	/* output:
-	:author: John Doe, :author: doe, :author: JOhn trio
-
-	1
-	0
-	1
-	*/
+	std::cout << "\n'" << _raw_input << "'\n";
 
 	return 0;
 }
+
 
 int main_4() {	// Author 사용 예시
 	std::vector<std::string> args;
@@ -45,7 +51,7 @@ int main_4() {	// Author 사용 예시
 
 	for (int i = 0; i < args.size(); i++) {
 		Author* a = new Author;
-		a->ParseArgument(args[i]);
+		*a << args[i];
 		bundle.tags.push_back(a);
 		try
 		{
@@ -109,29 +115,6 @@ int main_3() {	// 예외를 처리하는 예시
 	/* output:
 	[!] 사용할 수 없는 태그입니다: :aaaa:
 	[!] 태그의 인자가 올바르지 않습니다: :author:
-	*/
-
-	return 0;
-}
-
-int main_2() {	// 인자를 파싱하는 예시
-	std::string s = ":author: author name :author: author 2 :title: book 2";
-	std::stringstream ss(s);
-	std::string t;
-
-	while (ss >> t) {
-		Author a;
-		std::getline(ss, s);
-		s = a.ParseArgument(s);
-		ss.str(s);
-		ss.clear();
-		std::cout << "<" << a << "> left: \"" << s << "\"\n";
-	}
-
-	/* output:
-	<:author: author name> left: ":author: author 2 :title: book 2"
-	<:author: author 2> left: ":title: book 2"
-	<:author: book 2> left: ""
 	*/
 
 	return 0;

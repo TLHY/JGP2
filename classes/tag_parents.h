@@ -28,7 +28,14 @@ public:
 	*/
 	static bool is_tag(const std::string& str);
 
-	/* 인자 파싱
+	/* 인자 추가
+		멤버 변수인 _strarg에 인자로 받은 str을 붙입니다.
+		다음과 같습니다.
+		_strarg += " " + str;
+	*/
+	Tag& operator<<(std::string str);
+
+	/* 인자 파싱 [삭제됨]
 		문자열로부터 인자를 파싱하는 함수입니다.
 		인자로 받은 문자열에서 다른 태그가 나오기 직전까지를 인자로 인식하여 _strarg에 저장합니다.
 		인식한 부분을 제외한 나머지 문자열을 반환합니다.
@@ -37,7 +44,7 @@ public:
 		따라서 인자를 파싱한 이후에는 공백과 관련된 예외를 처리하는 것이 불가능합니다.
 		인자를 파싱하기 이전에 입력 문자열을 가지고 공백과 관련된 예외를 처리해주세요.
 	*/
-	std::string ParseArgument(std::string str);
+	// std::string ParseArgument(std::string str);
 
 	/* 객체 복사
 		객체를 복제하는 기능을 구현해야 합니다.
@@ -108,6 +115,16 @@ inline bool Tag::is_tag(const std::string& str)
 	return true;
 }
 
+inline Tag& Tag::operator<<(std::string str)
+{
+	if (!_strarg.empty()) {
+		_strarg += " ";
+	}
+	_strarg +=  str;
+	return *this;
+}
+
+/*
 std::string Tag::ParseArgument(std::string str)
 {
 	std::stringstream stream(str), args;
@@ -133,3 +150,4 @@ std::string Tag::ParseArgument(std::string str)
 	}
 	return result;
 }
+*/

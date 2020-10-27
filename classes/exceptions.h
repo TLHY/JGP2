@@ -63,6 +63,17 @@ public:
 	const char* what() const { return "[!] 식별 번호 태그를 제외한 모든 도서 정보 태그가 필요합니다."; };
 };
 
+/* 잘못된 입력
+	주 프롬프트에서 사용자가 입력한 문자열이 문법 규칙을 위반하면 이 예외를 발생시킵니다.
+*/
+class InvalidInput : public std::exception {
+private:
+	const char* _input;
+public:
+	InvalidInput(const char* input) : std::exception(), _input(input) {};
+	const char* what() const { return "[!] 입력이 올바르지 않습니다. 주 프롬프트의 문법 규칙을 확인해주세요."; };
+};
+
 // TODO: add, edit 태그 사용시 중복된 도서 태그 사용도 예외로 처리해야 함
 
 /* 태그 정보를 포함하는 예외
