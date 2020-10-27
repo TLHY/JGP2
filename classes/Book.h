@@ -16,6 +16,13 @@ public:
 	void set_Publisher(std::string publisher) { _publisher << publisher; };
 	void set_Date(std::string date) { _date << date; };
 
+	std::string get_ID() const { return _id.strarg(); };
+	std::string get_Title() const { return _title.strarg(); };
+	std::string get_Author() const { return _author.strarg(); };
+	std::string get_Publisher() const { return _publisher.strarg(); };
+	std::string get_Date() const { return _date.strarg(); };
+
+
 	void Validate();
 	void Print() const;
 

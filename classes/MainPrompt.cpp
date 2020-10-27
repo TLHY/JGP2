@@ -6,6 +6,7 @@
 
 #include "book_tags.h"
 #include "operation_tags.h"
+#include "Book.h"
 
 Tag* MainPrompt::GetTag(const std::string str) const
 {
@@ -46,6 +47,12 @@ Tag* MainPrompt::GetTag(const std::string str) const
 		return new Help();
 	}
 	throw InvalidTag(str.c_str());
+}
+
+MainPrompt::MainPrompt()
+{
+	vector<Book*> books = _file.import_book_list();
+	// 도서 목록을 어떻게 해줘야 하는데...?
 }
 
 void MainPrompt::Prompt()

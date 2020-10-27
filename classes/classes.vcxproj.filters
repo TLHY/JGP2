@@ -69,6 +69,18 @@
     <ClInclude Include="Add.h">
       <Filter>헤더 파일\tag\operation</Filter>
     </ClInclude>
+    <ClInclude Include="clear.h">
+      <Filter>헤더 파일\tag\operation</Filter>
+    </ClInclude>
+    <ClInclude Include="page.h">
+      <Filter>헤더 파일\tag\operation</Filter>
+    </ClInclude>
+    <ClInclude Include="BookList.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="FileIO.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainPrompt.cpp">
@@ -77,5 +89,16 @@
     <ClCompile Include="example.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="FileIO.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="BookShelf.txt">
+      <Filter>리소스 파일</Filter>
+    </Text>
   </ItemGroup>
 </Project>

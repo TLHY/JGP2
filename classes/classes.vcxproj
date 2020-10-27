@@ -141,7 +141,10 @@
     <ClInclude Include="Add.h" />
     <ClInclude Include="Author.h" />
     <ClInclude Include="Book.h" />
+    <ClInclude Include="BookList.h" />
     <ClInclude Include="book_tags.h" />
+    <ClInclude Include="clear.h" />
+    <ClInclude Include="FileIO.h" />
     <ClInclude Include="operation_tags.h" />
     <ClInclude Include="Del.h" />
     <ClInclude Include="Edit.h" />
@@ -150,6 +153,7 @@
     <ClInclude Include="MainPrompt.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="page.h" />
     <ClInclude Include="Publisher.h" />
     <ClInclude Include="tag_parents.h" />
     <ClInclude Include="TagBundle.h" />
@@ -158,9 +162,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="example.cpp" />
+    <ClCompile Include="FileIO.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MainPrompt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="BookShelf.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
