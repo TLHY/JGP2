@@ -54,3 +54,8 @@ int Book::Match(const TagBundle& bundle) const
 	}
 	return match;
 }
+
+std::ostream& operator<<(ostream& out, const Book& book) {
+	book.Print();
+	return out;
+}
